@@ -78,7 +78,7 @@ const LoginModal = () => {
         disabled={isLoading}
         label="Continue With Google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => signIn("google")}
       />
       <Button
         outline
