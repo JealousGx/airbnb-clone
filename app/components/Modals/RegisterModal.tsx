@@ -3,8 +3,9 @@
 import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
@@ -14,7 +15,8 @@ import Button from "../Button";
 import { signIn } from "next-auth/react";
 
 const RegisterModal = () => {
-  const regsiterModal = useRegisterModal();
+  const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -34,11 +36,16 @@ const RegisterModal = () => {
     axios
       .post("/api/auth/register", data)
       .then((res) => {
-        regsiterModal.onClose();
+        registerModal.onClose();
       })
       .catch((err) => toast.error("Something went wrong!"))
       .finally(() => setIsLoading(false));
   };
+
+  const toggleModal = useCallback(() => {
+    loginModal.onOpen();
+    registerModal.onClose();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -93,7 +100,7 @@ const RegisterModal = () => {
         <div className="flex flex-row items-center justify-center gap-2">
           Already have an account?{" "}
           <span
-            onClick={regsiterModal.onClose}
+            onClick={toggleModal}
             className="text-neutral-800 cursor-pointer hover:underline"
           >
             Login
@@ -106,10 +113,10 @@ const RegisterModal = () => {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={regsiterModal.isOpen}
+      isOpen={registerModal.isOpen}
       title="Register"
       actionLabel="Continue"
-      onClose={regsiterModal.onClose}
+      onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
