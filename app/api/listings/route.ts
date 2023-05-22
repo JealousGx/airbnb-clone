@@ -10,8 +10,18 @@ export async function POST(request: Request) {
     return NextResponse.error();
   }
 
-const body = await request.json();
-const {title, description, imageSrc, category, roomCount, bathroomCount, numOfGuests, locationValue, price} = body;
+  const body = await request.json();
+  const {
+    title,
+    description,
+    imageSrc,
+    category,
+    roomCount,
+    bathroomCount,
+    numOfGuests,
+    locationValue,
+    price,
+  } = body;
   Object.keys(body).forEach((value: any) => {
     if (!body[value]) {
       return NextResponse.error();
@@ -34,5 +44,4 @@ const {title, description, imageSrc, category, roomCount, bathroomCount, numOfGu
   });
 
   return NextResponse.json(listing);
-
 }
