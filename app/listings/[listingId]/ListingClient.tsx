@@ -69,7 +69,7 @@ const ListingClient: React.FC<ListingClient> = ({
         listingId: listing.id,
       })
       .then((data) => {
-        toast.success("listing reserved!");
+        toast.success("Listing reserved!");
         setDateRange(initialDateRange);
         rounter.push("/trips");
       })

@@ -21,7 +21,7 @@ export async function getReservations( params: Params ) {
     }
 
     if (authorId) {
-      query.authorId = { userId: authorId };
+      query.listing = { userId: authorId };
     }
 
     const reservations = await prisma.reservation.findMany({
@@ -47,8 +47,7 @@ export async function getReservations( params: Params ) {
     }));
 
     return safeReservations;
-  } catch (error) {
-    console.log(error);
-    throw new Error("Unable to get reservations");
+  } catch (error: any) {
+    throw new Error(error);
   }
 }
