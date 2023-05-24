@@ -71,8 +71,7 @@ const ListingClient: React.FC<ListingClient> = ({
       .then((data) => {
         toast.success("listing reserved!");
         setDateRange(initialDateRange);
-        // redirect to /trips
-        rounter.refresh();
+        rounter.push("/trips");
       })
       .catch((error) => {
         toast.error("Something went wrong!");
