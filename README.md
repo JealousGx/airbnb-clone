@@ -1,6 +1,10 @@
 # Airbnb Clone
 This is a clone of the popular vacation rental marketplace Airbnb, built with Next.js 13.4, Prisma, MongoDB, Next-Auth, Tailwind CSS, TypeScript, and Zustand for learning new NextJS structure and using other new packages. The project aims to replicate key features of Airbnb, allowing users to search for accommodations, view listings, make bookings, and manage their own listings as hosts.
 
+## Live Demo
+
+A live demo of the Airbnb Clone can be found at https://jealous-airbnb-clone.vercel.app. Feel free to explore the application and test its features.
+
 ## Getting Started
 
 To get started with the Airbnb Clone, follow the steps below:
